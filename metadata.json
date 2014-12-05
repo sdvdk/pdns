@@ -1,0 +1,16 @@
+{
+  "name": "sdvdk-pdns",
+  "version": "0.1.0",
+  "author": "sdvdk",
+  "summary": "Install and configure PowerDNS nameserver and/or recursor.",
+  "license": "Apache 2.0",
+  "source": "https://github.com/sdvdk/pdns",
+  "project_page": "https://github.com/sdvdk/pdns",
+  "issues_url": "https://github.com/sdvdk/pdns/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
+  ]
+}
