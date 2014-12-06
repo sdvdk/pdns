@@ -2,28 +2,36 @@
 #
 # This class is called from pdns::nameserver
 #
+# === Parameters
+#
+# [backend]
+#   Default set to sqlite. 
+#   Sets the backend used by PowerDNS nameserver.
+#   Currently only mysql, postgresql and sqlite are supported.
+#
 class pdns::nameserver::config (
-  $backend        = 'sqlite'
+  $backend        = 'sqlite',
+  $listen_address = '127.0.0.1'
 ) {
   if $backend == undef {
     fail('pdns::nameserver::config backend parameter is required')
   }
-  # defaults
-  File {
-    owner => 'pdns',
-    group => 'pdns',
-  }
-  file { '/etc/pdns/pdns.conf':
+  # # defaults
+  # File {
+  #   owner => 'pdns',
+  #   group => 'pdns',
+  # }
+  file { "${pdns::nameserver::config_path}/pdns.conf":
     ensure  => present,
-    mode    => '0400',
+    mode    => '0600',
     content => template('pdns/nameserver/pdns.conf.erb'),
-    require => Package['pdns'],
+    require => Package[$pdns::nameserver::package_name],
     notify  => Class['pdns::nameserver::service'],
   }
   file { '/var/pdns':
     ensure  => directory,
     mode    => '0755',
-    require => Package['pdns'],
+    require => Package[$pdns::nameserver::package_name],
   }
   case $backend {
     'mysql': {

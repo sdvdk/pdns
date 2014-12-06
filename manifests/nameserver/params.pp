@@ -7,11 +7,13 @@ class pdns::nameserver::params {
   case $::osfamily {
     'Debian': {
       $package_name = 'pdns-server'
-      $service_name = 'pdns-server'
+      $service_name = 'pdns'
+      $config_path = '/etc/powerdns'
     }
     'RedHat', 'Amazon': {
       $package_name = 'pdns'
       $service_name = 'pdns'
+      $config_path = '/etc/pdns'
     }
     default: {
       fail("${::operatingsystem} not supported")

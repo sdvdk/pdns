@@ -1,6 +1,6 @@
 # == Class pdns::recursor::service
 #
-# This class is meant to be called from pdns
+# This class is meant to be called from pdns::recursor
 # It ensure the service is running
 #
 class pdns::recursor::service {

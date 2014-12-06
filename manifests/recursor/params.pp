@@ -8,10 +8,12 @@ class pdns::recursor::params {
     'Debian': {
       $package_name = 'pdns-recursor'
       $service_name = 'pdns-recursor'
+      $config_path = '/etc/powerdns'
     }
     'RedHat', 'Amazon': {
       $package_name = 'pdns-recursor'
       $service_name = 'pdns-recursor'
+      $config_path = '/etc/pdns'
     }
     default: {
       fail("${::operatingsystem} not supported")
