@@ -18,8 +18,9 @@ This PowerDNS module lets you manage nameserver and recursor on Debian and RedHa
 
 This module installs PowerDNS nameserver and/or recursor.
 It gives you the ability to install and configure both services or separatly.
-The module comes with defaults to run both services out of the box.
-For production purposes better tunning of the config is required. 
+The module comes with defaults (sqlite) to run both services out of the box.
+For production purposes better tunning of the config is required.
+This module does not install or configure the backend services, please use the appropriate puppet modules to manage these backend services.
 
 ## Setup
 
