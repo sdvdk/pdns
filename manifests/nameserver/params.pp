@@ -14,6 +14,21 @@
 # [backend]
 #
 #
+# [backend_host]
+#
+#
+# [backend_user]
+#
+#
+# [backend_dbname]
+#
+#
+# [backend_password]
+#
+#
+# [backend_dbpath]
+#
+#
 # [setgid]
 #   If set, change group id to this gid for more security
 #
