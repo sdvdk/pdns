@@ -304,7 +304,7 @@ class pdns::nameserver::params {
   
   case $::osfamily {
     'Debian': {
-      $package_name = 'pdns_server'
+      $package_name = 'pdns-server'
       $service_name = 'pdns'
       $config_path = '/etc/powerdns'
     }
