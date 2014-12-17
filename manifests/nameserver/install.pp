@@ -44,10 +44,10 @@ class pdns::nameserver::install {
       #TODO: Do something with provided schema's
     }
     'sqlite': {
-      package { 'sqlite':
+      package { 'sqlite3':
         ensure => installed
       }
-      package { 'pdns-backend-sqlite':
+      package { 'pdns-backend-sqlite3':
         ensure => $my_package_ensure,
       }
       #TODO: Do something with provided schema's
