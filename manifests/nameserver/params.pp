@@ -359,14 +359,14 @@ class pdns::nameserver::params {
   $guardian                           = 'yes'    # Example: no
   $include_dir                        = undef    # Example: 
   $load_modules                       = undef    # Example: 
-  $local_address                      = "${::ipaddress}"    # Example: 0.0.0.0
+  $local_address                      = $::ipaddress    # Example: 0.0.0.0
   $local_ipv6                         = undef    # Example: 
   $local_port                         = 53       # Example: 53
   $log_dns_details                    = undef    # Example: 
   $log_dns_queries                    = undef    # Example: no
   $log_failed_updates                 = undef    # Example: 
   $logging_facility                   = undef    # Example: 
-  $log_level                           = undef    # Example: 4
+  $log_level                          = undef    # Example: 4
   $lua_prequery_script                = undef    # Example: 
   $master                             = undef    # Example: no
   $max_cache_entries                  = undef    # Example: 1000000

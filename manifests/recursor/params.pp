@@ -301,7 +301,7 @@ class pdns::recursor::params {
   $hint_file                       = undef    # Example: 
   $include_dir                     = undef    # Example: 
   $latency_statistic_size          = undef    # Example: 10000
-  $local_address                   = "${::ipaddress}"    # Example: 
+  $local_address                   = $::ipaddress_lo    # Example: 
   $local_port                      = 53       # Example: 53
   $log_common_errors               = undef    # Example: yes
   $logging_facility                = undef    # Example: 
