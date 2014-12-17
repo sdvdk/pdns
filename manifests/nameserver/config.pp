@@ -55,7 +55,7 @@ class pdns::nameserver::config {
   $log_dns_queries                    = $::pdns::nameserver::log_dns_queries
   $log_failed_updates                 = $::pdns::nameserver::log_failed_updates
   $logging_facility                   = $::pdns::nameserver::logging_facility
-  $loglevel                           = $::pdns::nameserver::loglevel
+  $log_level                          = $::pdns::nameserver::log_level
   $lua_prequery_script                = $::pdns::nameserver::lua_prequery_script
   $master                             = $::pdns::nameserver::master
   $max_cache_entries                  = $::pdns::nameserver::max_cache_entries
