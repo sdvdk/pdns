@@ -108,7 +108,7 @@ class pdns::nameserver (
   if ($package_ensure == 'present' or $package_ensure == true) {
     anchor { 'pdns::nameserver::start': }->
     class { '::pdns::nameserver::install': }->
-    class { '::pdns::nameserver::config': }->
+    class { '::pdns::nameserver::config': }~>
     class { '::pdns::nameserver::service': }->
     anchor { 'pdns::nameserver::end': }
   } else {

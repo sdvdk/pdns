@@ -90,7 +90,7 @@ class pdns::recursor (
   if ($package_ensure == 'present' or $package_ensure == true) {
     anchor { 'pdns::recursor::start': }->
     class { '::pdns::recursor::install': }->
-    class { '::pdns::recursor::config': }->
+    class { '::pdns::recursor::config': }~>
     class { '::pdns::recursor::service': }->
     anchor { 'pdns::recursor::end': }
   } else {
