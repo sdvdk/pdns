@@ -21,8 +21,8 @@ describe 'pdns::nameserver' do
 
       it { should contain_service('pdns').with( {:ensure => 'running', :enable => true,} )}
       it { should contain_package('pdns').with_ensure('present') }
-      it { should contain_package('sqlite3').with_ensure('installed') }
-      it { should contain_package('pdns-backend-sqlite3').with_ensure('present') }
+      it { should contain_package('sqlite').with_ensure('installed') }
+      it { should contain_package('pdns-backend-sqlite').with_ensure('present') }
       it { should contain_file('/etc/pdns/pdns.conf').with_ensure('present') }
       it { should contain_file('/var/pdns').with_ensure('directory') }
       it { should contain_file('/var/pdns/schema.sql').with_ensure('present') }
