@@ -9,7 +9,7 @@
 #
 class pdns::recursor::service {
 
-  if ($::pdns::recursor::package_ensure == 'present' or $::pdns::recursor::package_ensure == true) {  
+  if ($::pdns::recursor::package_ensure == 'present' or $::pdns::recursor::package_ensure == true) {
       case $::pdns::recursor::service_ensure {
         true:     {
           $service_ensure = 'running'
@@ -37,7 +37,7 @@ class pdns::recursor::service {
       }
   } else {
     notify { 'Service Unavailable':
-        message => "PowerDNS recursor service is unavailable or the package is going to be removed.",
+        message => 'PowerDNS recursor service is unavailable or the package is going to be removed.',
     }
   }
 }

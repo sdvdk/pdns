@@ -9,7 +9,7 @@
 #
 class pdns::nameserver::service {
 
-  if ($::pdns::nameserver::package_ensure == 'present' or $::pdns::nameserver::package_ensure == true) {  
+  if ($::pdns::nameserver::package_ensure == 'present' or $::pdns::nameserver::package_ensure == true) {
       case $::pdns::nameserver::service_ensure {
         true:     {
           $service_ensure = 'running'
@@ -37,7 +37,7 @@ class pdns::nameserver::service {
       }
   } else {
     notify { 'Service Unavailable':
-        message => "PowerDNS nameserver service is unavailable or the package is going to be removed.",
+        message => 'PowerDNS nameserver service is unavailable or the package is going to be removed.',
     }
   }
 }
