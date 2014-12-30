@@ -14,17 +14,26 @@ describe 'pdns::nameserver' do
 
       # Run it twice and test for idempotency
       apply_manifest(pp, :catch_failures => true)
-      apply_manifest(pp, :catch_changes  => true)
+      apply_manifest(pp, :catch_failures  => true)
     end
 
     describe package('pdns-server') do
-      it { is_expected.to be_installed }
+      it { should be_installed }
     end
 
     describe service('pdns') do
-      it { is_expected.to be_enabled }
-      it { is_expected.to be_running }
+      it { should be_enabled }
+      it { should be_running }
     end
+
+    describe port(53) do
+      it { should be_listening }
+    end
+
+    describe file('/var/pdns') do
+      it { should be_directory }
+    end
+    
   end
 end
 
@@ -42,16 +51,28 @@ describe 'pdns::recursor' do
 
       # Run it twice and test for idempotency
       apply_manifest(pp, :catch_failures => true)
-      apply_manifest(pp, :catch_changes  => true)
+      apply_manifest(pp, :catch_failures  => true)
     end
 
     describe package('pdns-recursor') do
-      it { is_expected.to be_installed }
+      it { should be_installed }
     end
 
     describe service('pdns-recursor') do
-      it { is_expected.to be_enabled }
-      it { is_expected.to be_running }
+      it { should be_enabled }
+      #it { should be_running }
+    end
+    
+    describe process("pdns_recursor") do
+      it { should be_running }
+    end
+
+    describe port(53) do
+      it { should be_listening }
+    end
+
+    describe file('/var/pdns') do
+      it { should be_directory }
     end
   end
 end
