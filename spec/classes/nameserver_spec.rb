@@ -15,17 +15,19 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_anchor('pdns::nameserver::start').that_comes_before('pdns::nameserver::install') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
       it { should contain_anchor('pdns::nameserver::end') }
 
       it { should contain_service('pdns').with( {:ensure => 'running', :enable => true,} )}
       it { should contain_package('pdns').with_ensure('present') }
-      it { should contain_package('sqlite').with_ensure('installed') }
-      it { should contain_package('pdns-backend-sqlite').with_ensure('present') }
+      it { should contain_package('sqlite3').with_ensure('installed') }
+      it { should contain_package('pdns-backend-sqlite3').with_ensure('present') }
       it { should contain_file('/etc/pdns/pdns.conf').with_ensure('present') }
       it { should contain_file('/var/pdns').with_ensure('directory') }
       it { should contain_file('/var/pdns/schema.sql').with_ensure('present') }
+      it { should contain_exec('built-sqlite-db').with_command('sqlite3 /var/pdns/powerdns.sqlite3 < /var/pdns/schema.sql') }
+      it { should contain_file('/var/pdns/powerdns.sqlite3').with_ensure('present') }
     end
   end
 
@@ -43,7 +45,7 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_anchor('pdns::nameserver::start').that_comes_before('pdns::nameserver::install') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
       it { should contain_anchor('pdns::nameserver::end') }
 
@@ -70,7 +72,7 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_anchor('pdns::nameserver::start').that_comes_before('pdns::nameserver::install') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
       it { should contain_anchor('pdns::nameserver::end') }
 
@@ -103,6 +105,7 @@ describe 'pdns::nameserver' do
       it { should contain_file('/etc/pdns/pdns.conf').with_ensure('absent') }
       it { should contain_file('/var/pdns').with_ensure('absent') }
       it { should contain_file('/var/pdns/schema.sql').with_ensure('absent') }
+      it { should contain_file('/var/pdns/powerdns.sqlite3').with_ensure('absent') }
       it { should contain_notify('Service Unavailable') }
     end
   end
@@ -119,7 +122,7 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver') }
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
 
       it { should contain_service('pdns').with( {:ensure => 'stopped', :enable => false,} )}
@@ -144,17 +147,19 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_anchor('pdns::nameserver::start').that_comes_before('pdns::nameserver::install') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
       it { should contain_anchor('pdns::nameserver::end') }
 
       it { should contain_service('pdns').with( {:ensure => 'running', :enable => true,} )}
-      it { should contain_package('pdns_server').with_ensure('present') }
-      it { should contain_package('sqlite').with_ensure('installed') }
-      it { should contain_package('pdns-backend-sqlite').with_ensure('present') }
+      it { should contain_package('pdns-server').with_ensure('present') }
+      it { should contain_package('sqlite3').with_ensure('installed') }
+      it { should contain_package('pdns-backend-sqlite3').with_ensure('present') }
       it { should contain_file('/etc/powerdns/pdns.conf').with_ensure('present') }
       it { should contain_file('/var/pdns').with_ensure('directory') }
       it { should contain_file('/var/pdns/schema.sql').with_ensure('present') }
+      it { should contain_exec('built-sqlite-db').with_command('sqlite3 /var/pdns/powerdns.sqlite3 < /var/pdns/schema.sql') }
+      it { should contain_file('/var/pdns/powerdns.sqlite3').with_ensure('present') }
     end
   end
 
@@ -172,12 +177,12 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_anchor('pdns::nameserver::start').that_comes_before('pdns::nameserver::install') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
       it { should contain_anchor('pdns::nameserver::end') }
 
       it { should contain_service('pdns').with( {:ensure => 'running', :enable => true,} )}
-      it { should contain_package('pdns_server').with_ensure('present') }
+      it { should contain_package('pdns-server').with_ensure('present') }
       it { should contain_package('pdns-backend-mysql').with_ensure('present') }
       it { should contain_file('/etc/powerdns/pdns.conf').with_ensure('present') }
       it { should contain_file('/var/pdns').with_ensure('directory') }
@@ -199,12 +204,12 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_anchor('pdns::nameserver::start').that_comes_before('pdns::nameserver::install') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
       it { should contain_anchor('pdns::nameserver::end') }
 
       it { should contain_service('pdns').with( {:ensure => 'running', :enable => true,} )}
-      it { should contain_package('pdns_server').with_ensure('present') }
+      it { should contain_package('pdns-server').with_ensure('present') }
       it { should contain_package('pdns-backend-postgresql').with_ensure('present') }
       it { should contain_file('/etc/powerdns/pdns.conf').with_ensure('present') }
       it { should contain_file('/var/pdns').with_ensure('directory') }
@@ -228,10 +233,11 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::install') }
       it { should contain_class('pdns::nameserver::install') }
 
-      it { should contain_package('pdns_server').with_ensure('absent') }
+      it { should contain_package('pdns-server').with_ensure('absent') }
       it { should contain_file('/etc/powerdns/pdns.conf').with_ensure('absent') }
       it { should contain_file('/var/pdns').with_ensure('absent') }
       it { should contain_file('/var/pdns/schema.sql').with_ensure('absent') }
+      it { should contain_file('/var/pdns/powerdns.sqlite3').with_ensure('absent') }
       it { should contain_notify('Service Unavailable') }
     end
   end
@@ -248,11 +254,11 @@ describe 'pdns::nameserver' do
       it { should contain_class('pdns::nameserver') }
       it { should contain_class('pdns::nameserver::params') }
       it { should contain_class('pdns::nameserver::install').that_comes_before('pdns::nameserver::config') }
-      it { should contain_class('pdns::nameserver::config').that_comes_before('pdns::nameserver::service') }
+      it { should contain_class('pdns::nameserver::config') }
       it { should contain_class('pdns::nameserver::service') }
 
       it { should contain_service('pdns').with( {:ensure => 'stopped', :enable => false,} )}
-      it { should contain_package('pdns_server').with_ensure('present') }
+      it { should contain_package('pdns-server').with_ensure('present') }
       it { should contain_file('/etc/powerdns/pdns.conf').with_ensure('present') }
       it { should contain_file('/var/pdns').with_ensure('directory') }
       it { should contain_file('/var/pdns/schema.sql').with_ensure('present') }

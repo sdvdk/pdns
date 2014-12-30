@@ -15,7 +15,7 @@ describe 'pdns::recursor' do
       it { should contain_class('pdns::recursor::params') }
       it { should contain_anchor('pdns::recursor::start').that_comes_before('pdns::recursor::install') }
       it { should contain_class('pdns::recursor::install').that_comes_before('pdns::recursor::config') }
-      it { should contain_class('pdns::recursor::config').that_comes_before('pdns::recursor::service') }
+      it { should contain_class('pdns::recursor::config') }
       it { should contain_class('pdns::recursor::service') }
       it { should contain_anchor('pdns::recursor::end') }
 
@@ -59,7 +59,7 @@ describe 'pdns::recursor' do
       it { should contain_class('pdns::recursor') }
       it { should contain_class('pdns::recursor::params') }
       it { should contain_class('pdns::recursor::install').that_comes_before('pdns::recursor::config') }
-      it { should contain_class('pdns::recursor::config').that_comes_before('pdns::recursor::service') }
+      it { should contain_class('pdns::recursor::config') }
       it { should contain_class('pdns::recursor::service') }
 
       it { should contain_service('pdns-recursor').with( {:ensure => 'stopped', :enable => false,} )}
@@ -82,7 +82,7 @@ describe 'pdns::recursor' do
       it { should contain_class('pdns::recursor::params') }
       it { should contain_anchor('pdns::recursor::start').that_comes_before('pdns::recursor::install') }
       it { should contain_class('pdns::recursor::install').that_comes_before('pdns::recursor::config') }
-      it { should contain_class('pdns::recursor::config').that_comes_before('pdns::recursor::service') }
+      it { should contain_class('pdns::recursor::config') }
       it { should contain_class('pdns::recursor::service') }
       it { should contain_anchor('pdns::recursor::end') }
 
@@ -126,7 +126,7 @@ describe 'pdns::recursor' do
       it { should contain_class('pdns::recursor') }
       it { should contain_class('pdns::recursor::params') }
       it { should contain_class('pdns::recursor::install').that_comes_before('pdns::recursor::config') }
-      it { should contain_class('pdns::recursor::config').that_comes_before('pdns::recursor::service') }
+      it { should contain_class('pdns::recursor::config') }
       it { should contain_class('pdns::recursor::service') }
 
       it { should contain_service('pdns-recursor').with( {:ensure => 'stopped', :enable => false,} )}
