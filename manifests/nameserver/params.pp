@@ -325,7 +325,7 @@ class pdns::nameserver::params {
   $backend_user                       = 'pdns'  # Example: pdns
   $backend_dbname                     = 'pdns'  # Example: pdns
   $backend_password                   = undef  # Example: 
-  $backend_dbpath                     = '/var/pdns/powerdns.sqlite'  # Example: /var/pdns/powerdns.sqlite
+  $backend_dbpath                     = '/var/pdns/powerdns.sqlite3'  # Example: /var/pdns/powerdns.sqlite
   $setgid                             = 'pdns'    # Example: pdns 
   $setuid                             = 'pdns'    # Example: pdns
   $add_superfluous_nsec3_for_old_bind = undef    # Example: yes

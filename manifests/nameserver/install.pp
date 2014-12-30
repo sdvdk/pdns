@@ -44,10 +44,22 @@ class pdns::nameserver::install {
       #TODO: Do something with provided schema's
     }
     'sqlite': {
-      package { 'sqlite3':
+      case $::osfamily {
+        'Debian': {
+          $sqlite_package = 'sqlite3'
+        }
+        'RedHat', 'Amazon': {
+          $sqlite_package = 'sqlite'
+        }
+        default: {
+          fail("${::operatingsystem} not supported")
+        }
+      }
+
+      package { $sqlite_package:
         ensure => installed
       }
-      package { 'pdns-backend-sqlite3':
+      package { "pdns-backend-${sqlite_package}":
         ensure => $my_package_ensure,
       }
       #TODO: Do something with provided schema's

@@ -140,30 +140,45 @@ class pdns::nameserver::config {
   }
 
   file { '/var/pdns':
-    ensure  => $dir_ensure,
-    mode    => '0755',
+    ensure => $dir_ensure,
+    mode   => '0755',
   }
 
   case $backend {
     'mysql': {
       file { '/var/pdns/schema.sql':
-        ensure  => $file_ensure,
-        mode    => '0444',
-        source  => 'puppet:///modules/pdns/nameserver/mysql-schema.sql',
+        ensure => $file_ensure,
+        mode   => '0444',
+        source => 'puppet:///modules/pdns/nameserver/mysql-schema.sql',
       }
     }
     'postgresql': {
       file { '/var/pdns/schema.sql':
-        ensure  => $file_ensure,
-        mode    => '0444',
-        source  => 'puppet:///modules/pdns/nameserver/postgresql-schema.sql',
+        ensure => $file_ensure,
+        mode   => '0444',
+        source => 'puppet:///modules/pdns/nameserver/postgresql-schema.sql',
       }
     }
     'sqlite': {
       file { '/var/pdns/schema.sql':
+        ensure => $file_ensure,
+        mode   => '0444',
+        source => 'puppet:///modules/pdns/nameserver/sqlite-schema.sql',
+      }
+
+      exec { 'built-sqlite-db':
+        command => 'sqlite3 /var/pdns/powerdns.sqlite3 < /var/pdns/schema.sql',
+        path    => '/usr/bin/',
+        creates => '/var/pdns/powerdns.sqlite3',
+        require => File['/var/pdns/schema.sql']
+      }
+
+      file { '/var/pdns/powerdns.sqlite3':
         ensure  => $file_ensure,
-        mode    => '0444',
-        source  => 'puppet:///modules/pdns/nameserver/sqlite-schema.sql',
+        owner   => 'pdns',
+        group   => 'pdns',
+        mode    => '0600',
+        require => Exec['built-sqlite-db']
       }
     }
     default: {
