@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sdvdk/pdns.svg?branch=master)](https://travis-ci.org/sdvdk/pdns)
+
 #### Table of Contents
 
 1. [Overview](#overview)
